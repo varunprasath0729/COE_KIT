@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-sans text-kit-body bg-kit-bg antialiased;
+    overflow-x: hidden;
+  }
+  a { @apply transition-colors duration-200; }
+  img { @apply max-w-full h-auto; }
+}
+
+@layer components {
+  /* Skip link for accessibility */
+  .skip-link {
+    @apply absolute -top-full left-4 bg-kit-navy text-white px-4 py-2 rounded-b-lg font-bold z-[9999]
+           focus:top-0 transition-all duration-200;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-kit-navy text-white border-none px-6 py-3 text-sm font-bold rounded-lg cursor-pointer
+           inline-flex items-center justify-center gap-2 transition-all duration-200
+           hover:bg-kit-navy-dark hover:shadow-kit-md focus:outline-none focus:ring-2 focus:ring-kit-navy focus:ring-offset-2;
+  }
+  .btn-gold {
+    @apply bg-kit-gold text-kit-navy-dark border-none px-6 py-3 text-sm font-extrabold rounded-lg cursor-pointer
+           inline-flex items-center justify-center gap-2 transition-all duration-200
+           hover:bg-kit-gold-hover hover:shadow-kit-md focus:outline-none focus:ring-2 focus:ring-kit-gold focus:ring-offset-2;
+  }
+  .btn-outline {
+    @apply bg-transparent text-kit-navy border-2 border-kit-navy px-5 py-2.5 text-sm font-bold rounded-lg cursor-pointer
+           inline-flex items-center gap-2 transition-all duration-200
+           hover:bg-kit-navy hover:text-white focus:outline-none focus:ring-2 focus:ring-kit-navy focus:ring-offset-2;
+  }
+  .btn-danger {
+    @apply bg-kit-crimson text-white border-none px-5 py-2.5 text-sm font-bold rounded-lg cursor-pointer
+           inline-flex items-center gap-2 transition-all duration-200
+           hover:bg-kit-crimson-dark focus:outline-none focus:ring-2 focus:ring-kit-crimson focus:ring-offset-2;
+  }
+  .btn-sm { @apply px-3 py-1.5 text-xs; }
+
+  /* Badges */
+  .badge { @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold; }
+  .badge-gold { @apply badge bg-kit-gold text-kit-navy-dark; }
+  .badge-navy { @apply badge bg-kit-navy text-white; }
+  .badge-crimson { @apply badge bg-kit-crimson text-white; }
+  .badge-muted { @apply badge bg-white/10 border border-white/20 text-white; }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-xl p-7 shadow-kit-md border border-kit-border;
+  }
+
+  /* Form controls */
+  .form-label { @apply block text-sm font-bold text-kit-navy mb-1.5; }
+  .form-input {
+    @apply w-full px-4 py-3 text-sm border border-kit-border rounded-lg bg-white text-kit-navy-dark
+           transition-all duration-200
+           focus:outline-none focus:border-kit-navy-light focus:ring-2 focus:ring-kit-navy/10;
+  }
+
+  /* Data tables */
+  .table-th { @apply bg-kit-navy text-white px-4 py-3 text-left text-sm font-bold; }
+  .table-td { @apply px-4 py-3.5 text-sm border-b border-kit-border; }
+  .table-tr-even { @apply bg-kit-bg; }
+  .table-tr:hover { @apply bg-kit-bg-alt; }
+
+  /* Grade badges */
+  .grade-O  { @apply badge bg-emerald-100 text-emerald-700; }
+  .grade-Ap { @apply badge bg-sky-100 text-sky-700; }
+  .grade-A  { @apply badge bg-indigo-100 text-indigo-700; }
+  .grade-Bp { @apply badge bg-amber-100 text-amber-700; }
+  .grade-RA { @apply badge bg-red-100 text-red-700; }
+
+  /* Section header */
+  .section-header {
+    @apply mb-8 pb-3 border-b-2 border-kit-border;
+  }
+  .section-title {
+    @apply text-2xl font-extrabold text-kit-navy relative inline-block
+           after:content-[''] after:absolute after:-bottom-4 after:left-0 after:w-14 after:h-0.5 after:bg-kit-gold;
+  }
+  .section-sub { @apply text-kit-muted text-sm mt-1; }
+
+  /* Admin sub-tab nav */
+  .admin-tab { @apply px-5 py-2.5 text-sm font-bold border-none bg-transparent text-kit-body border-b-2 border-transparent cursor-pointer transition-all duration-200; }
+  .admin-tab.active { @apply text-kit-navy border-kit-navy bg-kit-bg-alt; }
+
+  /* Pagination */
+  .page-btn {
+    @apply px-3 py-1.5 text-sm font-semibold border border-kit-border rounded bg-white text-kit-body
+           transition-all duration-200 cursor-pointer
+           hover:bg-kit-navy hover:text-white hover:border-kit-navy
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .page-btn-active { @apply bg-kit-navy text-kit-gold border-kit-navy; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .animate-ticker { animation: ticker 50s linear infinite; }
+  .animate-ticker:hover { animation-play-state: paused; }
+}
+
+/* Print styles */
+@media print {
+  .no-print, nav, header, footer { display: none !important; }
+  body { background: white !important; }
+  .card { box-shadow: none !important; border: 1px solid #000 !important; }
+}
